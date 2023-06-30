@@ -1,0 +1,62 @@
+[
+    {
+        "emp_name": "harsh punjani",
+        "emp_department": "HR",
+        "emp_roleType": "Full time",
+        "emp_designation": "Senior UI Developer",
+        "emp_location": "Bangalore",
+        "emp_avatar": "https://avatars.githubusercontent.com/u/98621?v=4",
+        "emp_experience": "4 years",
+        "emp_team": "IDC",
+        "emp_reportingManager": "Abhinav Joshi",
+        "emp_email": "harsh@gmail.com",
+        "emp_phoneNumber": "8141843131",
+        "emp_dateOfJoining": "2018",
+        "emp_rating": "2"
+    },
+    {
+        "emp_name": "arjun khetia",
+        "emp_department": "Front End Development",
+        "emp_roleType": "Full Time",
+        "emp_designation": "Senior UI Developer",
+        "emp_location": "Bangalore",
+        "emp_avatar": "https://github.com/mdo.png",
+        "emp_experience": "6 years",
+        "emp_team": "OCBC",
+        "emp_reportingManager": "Abhinav Joshi",
+        "emp_email": "arjun@gmail.com",
+        "emp_phoneNumber": "8141843131",
+        "emp_dateOfJoining": "2016",
+        "emp_rating": "4"
+    },
+    {
+        "emp_name": "Dyui tige",
+        "emp_department": "Front End Development",
+        "emp_roleType": "Full Time",
+        "emp_designation": "Senior UI Developer",
+        "emp_location": "Kolkata",
+        "emp_avatar": "https://avatars.githubusercontent.com/u/92621?v=4",
+        "emp_experience": "6 years",
+        "emp_team": "Product Team",
+        "emp_reportingManager": "vijay Joshi",
+        "emp_email": "arjun@gmail.com",
+        "emp_phoneNumber": "9823432121",
+        "emp_dateOfJoining": "2016",
+        "emp_rating": "2"
+    },
+    {
+        "emp_name": "Suraj Tyagi",
+        "emp_department": "Front End Development",
+        "emp_roleType": "Full Time",
+        "emp_designation": "Senior UI Developer",
+        "emp_location": "Gujarat",
+        "emp_avatar": "https://avatars.githubusercontent.com/u/92521?v=4",
+        "emp_experience": "2 years",
+        "emp_team": "Rustify",
+        "emp_reportingManager": "Rahul Verma",
+        "emp_email": "arjun@gmail.com",
+        "emp_phoneNumber": "9212121212",
+        "emp_dateOfJoining": "2021",
+        "emp_rating": "5"
+    }
+]
