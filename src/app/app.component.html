@@ -1,21 +1,213 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/cli">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<!--nav bar-->
+<nav class="navbar navbar-light bg-light1">
+  <div class="container-fluid">
+    <a class="navbar-brand"></a>
+    <div class="d-flex centeralign">
+      <i class="bi bi-bell me-2"></i>
+      <select class="btn btn-light dropdown-toggle" aria-placeholder="Choose Team" [(ngModel)]="selectedTeam"
+        (change)="changeTeam()">
+        <i class="bi bi-people"></i>
+        <option *ngFor="let teams of Teams">
+          {{ teams }}
+        </option>
+      </select>
+    </div>
+  </div>
+</nav>
 
-<router-outlet></router-outlet>
+<!--sider bar-->
+<div class="d-flex flex-column flex-shrink-0 p-4 bg-light1 Sidebar">
+  <img src="../assets/Infrrd-Logo-Transparent.png" class="logo" width="170" height="">
+  <ul class="nav nav-pills flex-column mb-auto">
+    <li class="nav-item">
+      <a href="#" class="nav-link " aria-current="page">
+        <i class="bi bi-view-stacked"></i>
+        Overview
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-envelope"></i>
+        Message
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark" (click)="toggleCollapse()">
+        <i class="bi bi-search"></i>
+        Search
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-funnel-fill"></i>
+        Filter
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-clock-history"></i>
+        History
+      </a>
+    </li>
+    <li>
+      <a href="#" class="nav-link link-dark">
+        <i class="bi bi-person"></i>
+        My Account
+      </a>
+    </li>
+  </ul>
+  <div class="dropdown">
+    <ul class="nav nav-pills flex-column mb-auto">
+      <li class="nav-item">
+        <a href="#" class="nav-link " aria-current="page">
+          <i class="bi bi-wechat"></i>
+          Get Help
+        </a>
+      </li>
+      <li>
+        <a href="#" class="nav-link link-dark">
+          <i class="bi bi-box-arrow-right"></i>
+          Sign Out
+        </a>
+      </li>
+     
+    </ul>
+  </div>
+</div>
+
+<!--search filter div will show and hide based on search menu click-->
+<div *ngIf="visible" class="d-flex flex-column flex-shrink-0 p-4 bg-light1 Sidebar" id="mySidenav2" [ngClass]="{
+    'transitionFilter':visible}">
+  <div class="multifilter mb-2">
+    <span class="filterSubtitle">Department</span>
+    <ng-select [items]="Department" bindLabel="company" placeholder="Select item" [(ngModel)]="selectedDepartment">
+    </ng-select>
+  </div>
+  <hr>
+  <div class="multifilter mb-2">
+    <span class="filterSubtitle">Role Type</span>
+    <ng-select [items]="roleType" bindLabel="company" placeholder="Select item" [(ngModel)]="selectedRoleType">
+    </ng-select>
+  </div>
+  <hr>
+  <div class="multifilter mb-2">
+    <span class="filterSubtitle">Designation</span>
+    <ng-select [items]="designation" bindLabel="company" placeholder="Select item" [(ngModel)]="selectedDesignation">
+    </ng-select>
+  </div>
+  <hr>
+  <div class="multifilter mb-2">
+    <span class="filterSubtitle">Experience</span>
+    <ng-select [items]="experience" bindLabel="company" placeholder="Select item" [(ngModel)]="selectedExperience">
+    </ng-select>
+  </div>
+  <hr>
+  <div class="multifilter mb-2">
+    <span class="filterSubtitle">Year of Joining</span>
+    <ng-select [items]="yearofJoining" bindLabel="company" placeholder="Select item" [(ngModel)]="selectedyearofJoining">
+    </ng-select>
+  </div>
+  <hr>
+  <div class="multifilter mb-2">
+    <span class="filterSubtitle">Location</span>
+    <ng-select [items]="location" bindLabel="company" placeholder="Select item" [(ngModel)]="selectedLocation">
+    </ng-select>
+  </div>
+  <hr>
+  <div class="multifilter mb-2 ">
+    <span class="filterSubtitle">Team</span>
+    <ng-select [items]="Teams" bindLabel="company" placeholder="Select item" [(ngModel)]="selectedTeam">
+    </ng-select>
+  </div>
+  
+  <hr>
+ 
+  <div class="filterButtondiv">
+    <form class="form-inline">
+      <button class="btn btn-outline-success bt1" (click)="CancleFilter()">Cancle</button>
+      <button class="btn btn-success  bt2" (click)="submitFilter()">Submit</button>
+    </form>
+  </div>
+</div>
+
+<!--main content/card sessiont-->
+<div id="main" [ngClass]="{
+    'mainMarginLeft':visible}">
+  <div class="container">
+    <div class="bg-light d-flex justify-content-between mb-3 mt-3 subtitle">
+      <span class="subtitle">{{employeeDetails.length}} Result Found</span>
+      <div><input type="checkbox" class="checkbox" [value]="isOnlyBangaloreEmp" (change)="onCheckboxChange($event)" />
+        Show Only Bangalore Employees</div>
+
+    </div>
+    <div class="row " >
+      <div class="col-md-3" *ngFor="let emp of employeeDetails">
+        <div class="card p-2 mb-2">
+          <div class="row">
+            <div class="col-md-4 m-auto">
+              <img [src]='emp.emp_avatar' alt="" width="62" height="62" class="rounded-circle me-2">
+            </div>
+            <div class="col-md-4 m-auto">
+              <h6 class="mb-0 f8-em">{{emp.emp_name}}</h6> 
+              <h6 class="repeatSubtitle f7-em pt-2">{{emp.emp_designation}}</h6>
+            </div>
+            <div class="col-md-4 m-auto">
+              <div class="icon"> <i class="bi bi-send-fill"></i> </div>
+            </div>
+          </div>
+          <!--rating row-->
+          <div class="row p-2">
+            <div class="col-md-4 m-auto textLeft ">
+              <span class="repeatSubtitle">{{emp.emp_rating}} Rating</span>
+            </div>
+            <div class="col-md-4 m-auto  ">
+              <ngb-rating [max]="5" [(rate)]="emp.emp_rating" [readonly]="false"></ngb-rating>
+            </div>
+            <div class="col-md-4 m-auto">
+            </div>
+          </div>
+          <hr />
+          <!--experice and DOJ-->
+          <div class="row p-2">
+            <div class="col-md-6  textLeft m-auto  ">
+              <span class="repeatSubtitle">Experience: </span><span class="repeattitlevalue">{{emp.emp_experience}}</span>
+            </div>
+            <div class="col-md-6 m-auto  textLeft">
+              <span class="repeatSubtitle">DOJ: </span><span class="repeattitlevalue">{{emp.emp_dateOfJoining}}</span>
+            </div>
+          </div>
+          <hr />
+          <!--current team-->
+          <div class="row p-2">
+            <div class="col-md-12 textLeft  m-auto  ">
+              <span class="repeatSubtitle">Current Team: </span><span class="repeattitlevalue">{{emp.emp_team}}</span>
+            </div>
+          </div>
+          <hr />
+          <!--reporting manager-->
+          <div class="row p-2">
+            <div class="col-md-12 textLeft  m-auto  ">
+              <span class="repeatSubtitle">Reporting Manager: </span><span class="repeattitlevalue">{{emp.emp_reportingManager}}</span>
+            </div>
+          </div>
+          <hr />
+          <!--contact details-->
+          <div class="row p-2">
+            <div class="col-md-6 textLeft m-auto ">
+              <div class="ml-auto  align-items-center mt-4 mt-md-0">
+                <i class="bi bi-telephone-fill"></i>
+                <span class=" repeattitlevalue">{{emp.emp_phoneNumber}}</span>
+              </div>
+            </div>
+            <div class="col-md-6 m-auto ">
+              <div class=" ml-auto align-items-center mt-md-0">
+                <span class=""> <i class="bi bi-envelope bi-envelope1"></i></span> 
+                <span class="pl-2 repeattitlevalue">{{emp.emp_email}}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
