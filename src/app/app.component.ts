@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import * as data from '../assets/employees_Details.json';
 
 @Component({
   selector: 'app-root',
@@ -25,7 +24,7 @@ export class AppComponent implements OnInit {
     'QA',
     'R&D',
   ];
-  selectedDepartment = this.Department[0];
+  selectedDepartment = this.Department[3];
 
   roleType: any = ['Full time', 'Part time', 'Contract based'];
   selectedRoleType = this.roleType[0];
@@ -47,7 +46,7 @@ export class AppComponent implements OnInit {
     '6 years',
     '7 years',
   ];
-  selectedExperience = this.experience[0];
+  selectedExperience = this.experience[2];
 
   yearofJoining: any = [
     '2016',
@@ -59,7 +58,7 @@ export class AppComponent implements OnInit {
     '2022',
     '2023',
   ];
-  selectedyearofJoining = this.yearofJoining[0];
+  selectedyearofJoining = this.yearofJoining[2];
 
   location: any = ['Bangalore', 'Gujarat', 'Kolkata', 'Mumbai', 'Delhi'];
   selectedLocation = this.location[0];
@@ -70,7 +69,7 @@ export class AppComponent implements OnInit {
   selectedTeam: string = this.Teams[5];
   employeeDetails: any = [];
   isOnlyBangaloreEmp: boolean = false;
-  url: string = '../assets/employees_Details.json';
+  url: string = 'assets/employees_Details.json';
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -93,7 +92,6 @@ export class AppComponent implements OnInit {
   getEmployeeData() {
     this.http.get(this.url).subscribe((res) => {
       this.employeeDetails = res;
-      console.log('--- result :: ', this.employeeDetails);
       localStorage.setItem('emp_detail', JSON.stringify(this.employeeDetails));
     });
   }
@@ -101,7 +99,6 @@ export class AppComponent implements OnInit {
     this.retString = localStorage.getItem('emp_detail');
     this.employeeDetails = [];
     this.employeeDetails = JSON.parse(this.retString);
-    console.log(JSON.parse(this.retString));
     if (this.selectedTeam !== 'Chosse Team') {
       this.employeeDetails = this.employeeDetails.filter((data: any) => {
         return data.emp_team == this.selectedTeam;
@@ -116,15 +113,20 @@ export class AppComponent implements OnInit {
   }
 
   submitFilter() {
-    console.log('submit.....filter')
+    this.visible = false;
     this.retString = localStorage.getItem('emp_detail');
     this.employeeDetails = [];
     this.employeeDetails = JSON.parse(this.retString);
     this.employeeDetails = this.employeeDetails.filter((data: any) => {
-      return (data.emp_team == this.selectedTeam && data.emp_department == this.selectedDepartment && data.emp_designation == this.selectedDesignation &&
-              data.emp_experience == this.selectedExperience && data.emp_location == this.selectedLocation && data.emp_roleType == this.selectedRoleType &&
-       data.emp_dateOfJoining == this.selectedyearofJoining)
+      return (
+        data.emp_team == this.selectedTeam &&
+        data.emp_department == this.selectedDepartment &&
+        data.emp_designation == this.selectedDesignation &&
+        data.emp_experience == this.selectedExperience &&
+        data.emp_location == this.selectedLocation &&
+        data.emp_roleType == this.selectedRoleType &&
+        data.emp_dateOfJoining == this.selectedyearofJoining
+      );
     });
-
   }
 }
